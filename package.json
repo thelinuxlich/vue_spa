@@ -1,0 +1,23 @@
+{
+  "name": "vue_spa",
+  "version": "0.0.0",
+  "description": "Build Vue project with Browserify",
+  "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/thelinuxlich/vue_spa.git"
+  },
+  "dependencies": {
+    "vue": "git://github.com/yyx990803/vue.git#dev"
+  },
+  "devDependencies": {
+    "watchify": "*",
+    "insert-css": "*",
+    "partialify": "*"
+  },
+  "author": "Evan You",
+  "license": "MIT",
+  "scripts": {
+    "dev": "watchify -e src/main.js -t partialify -o dist/bundle.js"
+  }
+}
