@@ -10,12 +10,19 @@ var routing = require("./routes"),
             about: require('./about'),
             notfound: require('./notfound')
         },
+        ready: function() {
+            document.title = this.currentView;
+        },
         template: require('./app.html'),
         data: {
             currentView: routing.getRoute(),
             routes: routing.routes
         }
     });
+
+app.$watch("currentView", function(value) {
+    document.title = value;
+});
 
 window.addEventListener('hashchange', function () {
     app.currentView = routing.getRoute();

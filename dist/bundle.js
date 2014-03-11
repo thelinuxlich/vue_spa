@@ -4202,12 +4202,19 @@ var routing = require("./routes"),
             about: require('./about'),
             notfound: require('./notfound')
         },
+        ready: function() {
+            document.title = this.currentView;
+        },
         template: require('./app.html'),
         data: {
             currentView: routing.getRoute(),
             routes: routing.routes
         }
     });
+
+app.$watch("currentView", function(value) {
+    document.title = value;
+});
 
 window.addEventListener('hashchange', function () {
     app.currentView = routing.getRoute();
@@ -4229,13 +4236,14 @@ module.exports = '#notfound {\n    color: red;\n}\n';
 module.exports = '<h1>404 yo</h1>\n';
 },{}],42:[function(require,module,exports){
 // add your routes/components here
-var routes = ['home', 'blog', 'about'];
+var routes = ['home', 'blog', 'about'],
+    initialPage = 'home';
 
 // simple regex for url dispatch
 module.exports = {
     routes: routes,
     getRoute: function () {
-        var path = location.hash.replace(/^#!\/?/, '') || 'home';
+        var path = location.hash.replace(/^#!\/?/, '') || initialPage;
         return routes.indexOf(path) > -1 ? path : 'notfound';
     }
 };
