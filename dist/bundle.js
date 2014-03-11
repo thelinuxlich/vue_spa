@@ -4158,8 +4158,6 @@ module.exports = '<h1>About</h1>\n<div class="content">{{>yield}}</div>\n';
 },{}],30:[function(require,module,exports){
 module.exports = 'body {\n    padding: 20px;\n    font-family: \'Helvetica Neue\', Arial, sans-serif;\n}\nul {\n    list-style-type: none;\n    padding: 0;\n}\nli {\n    display: inline-block;\n    margin-right: 10px;\n}\na {\n    color: #999;\n    text-decoration: none;\n}\na.current {\n    color: blue;\n}\n.view {\n    position: absolute;\n    opacity: 1;\n    -webkit-transition: all .2s ease;\n    transition: all .2s ease;\n}\n.v-enter {\n    opacity: 0;\n    -webkit-transform: translate3d(30px, 0, 0);\n    transform: translate3d(30px, 0, 0);\n}\n.v-leave {\n    opacity: 0;\n    -webkit-transform: translate3d(-30px, 0, 0);\n    transform: translate3d(-30px, 0, 0);\n}\n';
 },{}],31:[function(require,module,exports){
-module.exports = '<div id="app">\n    <ul>\n        <li v-repeat="routes">\n            <a href="#!/{{$value}}" v-class="current:currentView == $value">{{$value}}</a>\n        </li>\n    </ul>\n    <div v-view="currentView" class="view" v-transition>\n        <p>Hello! {{msg}}</p>\n    </div>\n</div>\n';
-},{}],32:[function(require,module,exports){
 require('insert-css')(require('./style.css'));
 
 module.exports = {
@@ -4170,11 +4168,11 @@ module.exports = {
     }
 };
 
-},{"./style.css":33,"./template.html":34,"insert-css":1}],33:[function(require,module,exports){
+},{"./style.css":32,"./template.html":33,"insert-css":1}],32:[function(require,module,exports){
 module.exports = '#blog {\n    color: blue;\n}\n';
-},{}],34:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 module.exports = '<h1>Blog</h1>\n<div class="content">{{>yield}}</div>\n';
-},{}],35:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 require('insert-css')(require('./style.css'));
 
 module.exports = {
@@ -4185,36 +4183,28 @@ module.exports = {
     }
 };
 
-},{"./style.css":36,"./template.html":37,"insert-css":1}],36:[function(require,module,exports){
+},{"./style.css":35,"./template.html":36,"insert-css":1}],35:[function(require,module,exports){
 module.exports = '#home {\n    font-style: italic;\n}\n';
-},{}],37:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 module.exports = '<h1>Home</h1>\n<div class="content">{{>yield}}</div>\n';
-},{}],38:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 require('insert-css')(require('./app.css'));
 
 var routing = require("./routes"),
     Vue = require('vue'),
     app = new Vue({
-        el: '#app',
+        el: 'html',
         components: {
             home: require('./home'),
             blog: require('./blog'),
             about: require('./about'),
             notfound: require('./notfound')
         },
-        ready: function() {
-            document.title = this.currentView;
-        },
-        template: require('./app.html'),
         data: {
             currentView: routing.getRoute(),
             routes: routing.routes
         }
     });
-
-app.$watch("currentView", function(value) {
-    document.title = value;
-});
 
 window.addEventListener('hashchange', function () {
     app.currentView = routing.getRoute();
@@ -4222,7 +4212,7 @@ window.addEventListener('hashchange', function () {
 
 
 
-},{"./about":27,"./app.css":30,"./app.html":31,"./blog":32,"./home":35,"./notfound":39,"./routes":42,"insert-css":1,"vue":21}],39:[function(require,module,exports){
+},{"./about":27,"./app.css":30,"./blog":31,"./home":34,"./notfound":38,"./routes":41,"insert-css":1,"vue":21}],38:[function(require,module,exports){
 require('insert-css')(require('./style.css'));
 
 module.exports = {
@@ -4230,11 +4220,11 @@ module.exports = {
     template: require('./template.html')
 };
 
-},{"./style.css":40,"./template.html":41,"insert-css":1}],40:[function(require,module,exports){
+},{"./style.css":39,"./template.html":40,"insert-css":1}],39:[function(require,module,exports){
 module.exports = '#notfound {\n    color: red;\n}\n';
-},{}],41:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 module.exports = '<h1>404 yo</h1>\n';
-},{}],42:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 // add your routes/components here
 var routes = ['home', 'blog', 'about'],
     initialPage = 'home';
@@ -4248,4 +4238,4 @@ module.exports = {
     }
 };
 
-},{}]},{},[38])
+},{}]},{},[37])
